@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 export const HeaderSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,13 +23,13 @@ export const HeaderSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div 
-            className="flex items-center cursor-pointer" 
+          <div
+            className="flex items-center cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            <img 
-              src="/lovable-uploads/e7032f18-a75b-442b-9051-d727b94de356.png" 
-              alt="Zaplia" 
+            <img
+              src="/lovable-uploads/e7032f18-a75b-442b-9051-d727b94de356.png"
+              alt="Zaplia"
               className="h-8 w-auto"
             />
           </div>
@@ -58,15 +58,15 @@ export const HeaderSection = () => {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button 
+            <Button
               className="bg-zaplia-green hover:bg-zaplia-green/90"
-              onClick={() => window.open("https://app.zaplia.com.br/signup", "_blank")}
+              onClick={() => window.open('/signup', '_blank')}
             >
               Teste Grátis
             </Button>
-            <Button 
+            <Button
               variant="outline"
-              onClick={() => window.open("https://app.zaplia.com.br/login", "_blank")}
+              onClick={() => window.open('/login', '_blank')}
             >
               Entrar
             </Button>
@@ -108,16 +108,18 @@ export const HeaderSection = () => {
                 Preços
               </button>
               <div className="pt-4 space-y-3">
-                <Button 
+                <Button
                   className="w-full bg-zaplia-green hover:bg-zaplia-green/90"
-                  onClick={() => window.open("https://app.zaplia.com.br/signup", "_blank")}
+                  onClick={() => window.open('/signup', '_blank')}
                 >
                   Teste Grátis
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full"
-                  onClick={() => window.open("https://app.zaplia.com.br/login", "_blank")}
+                  onClick={() =>
+                    window.open('https://app.zaplia.com.br/login', '_blank')
+                  }
                 >
                   Entrar
                 </Button>

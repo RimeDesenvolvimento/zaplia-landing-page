@@ -1,43 +1,49 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Check, 
-  Smartphone, 
-  Users, 
-  Layers, 
-  Bot, 
-  MessageSquare, 
-  Calendar, 
-  Settings, 
-  Code, 
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Check,
+  Smartphone,
+  Users,
+  Layers,
+  Bot,
+  MessageSquare,
+  Calendar,
+  Settings,
+  Code,
   Phone,
   Headphones,
-  Zap
-} from "lucide-react";
-import { openWhatsApp, ZAPLIA_WHATSAPP } from "@/utils/whatsapp";
-import { useState } from "react";
+  Zap,
+} from 'lucide-react';
+import { openWhatsApp, ZAPLIA_WHATSAPP } from '@/utils/whatsapp';
+import { useState } from 'react';
 
 export const PricingSection = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState<'monthly' | 'semi' | 'annual'>('monthly');
+  const [selectedPeriod, setSelectedPeriod] = useState<
+    'monthly' | 'semi' | 'annual'
+  >('monthly');
 
   const periods = [
     { key: 'monthly', label: 'Mensal', discount: 0 },
     { key: 'semi', label: 'Semestral', discount: 20 },
-    { key: 'annual', label: 'Anual', discount: 30 }
+    { key: 'annual', label: 'Anual', discount: 30 },
   ];
 
-  const calculatePrice = (basePrice: number, discount: number, period: string) => {
+  const calculatePrice = (
+    basePrice: number,
+    discount: number,
+    period: string
+  ) => {
     const discountedMonthlyPrice = basePrice * (1 - discount / 100);
-    
+
     if (period === 'monthly') {
       return discountedMonthlyPrice;
     } else if (period === 'semi') {
-      return discountedMonthlyPrice * 6; // Total for 6 months
+      return discountedMonthlyPrice * 6;
     } else if (period === 'annual') {
-      return discountedMonthlyPrice * 12; // Total for 12 months
+      return discountedMonthlyPrice * 12;
     }
-    
+
     return discountedMonthlyPrice;
   };
 
@@ -63,90 +69,92 @@ export const PricingSection = () => {
     if (feature.includes('Bot')) return Bot;
     if (feature.includes('Mensagens')) return MessageSquare;
     if (feature.includes('Agendamentos')) return Calendar;
-    if (feature.includes('Painel') || feature.includes('Administrativo')) return Settings;
+    if (feature.includes('Painel') || feature.includes('Administrativo'))
+      return Settings;
     if (feature.includes('API')) return Code;
-    if (feature.includes('Mobile') || feature.includes('Acesso Mobile')) return Phone;
+    if (feature.includes('Mobile') || feature.includes('Acesso Mobile'))
+      return Phone;
     if (feature.includes('Atendimento Prioritário')) return Headphones;
     if (feature.includes('Ativação')) return Zap;
     if (feature.includes('ChatGPT')) return Bot;
-    
-    return Check; // Default fallback
+
+    return Check;
   };
 
   const plans = [
     {
-      name: "Básico",
-      basePrice: 49.90,
+      name: 'Básico',
+      basePrice: 49.9,
       badge: null,
-      color: "border-muted",
+      color: 'border-muted',
       features: [
-        "01 números de WhatsApp",
-        "01 Atendente",
-        "03 Filas / Setores",
-        "Bot de Atendimento",
-        "Mensagens ilimitadas",
-        "Agendamentos de Envio",
-        "Painel Administrativo",
-        "Acesso Mobile",
-        "Ativação imediata"
-      ]
+        '01 números de WhatsApp',
+        '01 Atendente',
+        '03 Filas / Setores',
+        'Bot de Atendimento',
+        'Mensagens ilimitadas',
+        'Agendamentos de Envio',
+        'Painel Administrativo',
+        'Acesso Mobile',
+        'Ativação imediata',
+      ],
     },
     {
-      name: "Pro",
-      basePrice: 99.90,
-      badge: "Mais Popular",
-      color: "border-primary shadow-cta",
+      name: 'Pro',
+      basePrice: 99.9,
+      badge: 'Mais Popular',
+      color: 'border-primary shadow-cta',
       features: [
-        "02 números de WhatsApp",
-        "05 Atendentes",
-        "05 Filas / Setores",
-        "Bot de Atendimento",
-        "Mensagens ilimitadas",
-        "Agendamentos de Envio",
-        "Painel Administrativo",
-        "API de Integração",
-        "Acesso Mobile",
-        "Ativação imediata"
-      ]
+        '02 números de WhatsApp',
+        '05 Atendentes',
+        '05 Filas / Setores',
+        'Bot de Atendimento',
+        'Mensagens ilimitadas',
+        'Agendamentos de Envio',
+        'Painel Administrativo',
+        'API de Integração',
+        'Acesso Mobile',
+        'Ativação imediata',
+      ],
     },
     {
-      name: "Enterprise",
-      basePrice: 199.00,
+      name: 'Enterprise',
+      basePrice: 199.0,
       badge: null,
-      color: "border-muted",
+      color: 'border-muted',
       features: [
-        "05 números de WhatsApp",
-        "10 Atendentes",
-        "10 Filas / Setores",
-        "Bot de Atendimento",
-        "Mensagens ilimitadas",
-        "Agendamentos de Envio",
-        "Painel Administrativo",
-        "API de Integração",
-        "Acesso Mobile",
-        "Ativação imediata"
-      ]
+        '05 números de WhatsApp',
+        '10 Atendentes',
+        '10 Filas / Setores',
+        'Bot de Atendimento',
+        'Mensagens ilimitadas',
+        'Agendamentos de Envio',
+        'Painel Administrativo',
+        'API de Integração',
+        'Acesso Mobile',
+        'Ativação imediata',
+      ],
     },
     {
-      name: "Enterprise Plus",
-      basePrice: 499.00,
-      badge: "Para grandes equipes",
-      color: "border-zaplia-orange shadow-feature",
+      name: 'Enterprise Plus',
+      basePrice: 499.0,
+      badge: 'Para grandes equipes',
+      color: 'border-zaplia-orange shadow-feature',
       features: [
-        "10 números de WhatsApp",
-        "25 Atendentes",
-        "20 Filas / Setores",
-        "Bot de Atendimento",
-        "Mensagens ilimitadas",
-        "Agendamentos de Envio",
-        "Painel Administrativo",
-        "API de Integração",
-        "Integração com ChatGPT",
-        "Acesso Mobile",
-        "Atendimento Prioritário",
-        "Ativação imediata"
-      ]
-    }
+        '10 números de WhatsApp',
+        '25 Atendentes',
+        '20 Filas / Setores',
+        'Bot de Atendimento',
+        'Mensagens ilimitadas',
+        'Agendamentos de Envio',
+        'Painel Administrativo',
+        'API de Integração',
+        'Integração com ChatGPT',
+        'Acesso Mobile',
+        'Atendimento Prioritário',
+        'Ativação imediata',
+      ],
+    },
   ];
 
   return (
@@ -157,15 +165,17 @@ export const PricingSection = () => {
             Planos que se adaptam ao seu negócio
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Escolha o plano ideal para sua empresa. Sem fidelização, cancele quando quiser.
+            Escolha o plano ideal para sua empresa. Sem fidelização, cancele
+            quando quiser.
           </p>
-          
-          {/* Period Selection */}
+
           <div className="inline-flex bg-background rounded-xl p-1 shadow-lg">
-            {periods.map((period) => (
+            {periods.map(period => (
               <button
                 key={period.key}
-                onClick={() => setSelectedPeriod(period.key as 'monthly' | 'semi' | 'annual')}
+                onClick={() =>
+                  setSelectedPeriod(period.key as 'monthly' | 'semi' | 'annual')
+                }
                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 relative ${
                   selectedPeriod === period.key
                     ? 'bg-primary text-primary-foreground shadow-md'
@@ -182,34 +192,42 @@ export const PricingSection = () => {
             ))}
           </div>
         </div>
-        
+
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
           {plans.map((plan, index) => {
-            const currentDiscount = periods.find(p => p.key === selectedPeriod)?.discount || 0;
-            const currentPrice = calculatePrice(plan.basePrice, currentDiscount, selectedPeriod);
-            const originalTotalPrice = getOriginalTotalPrice(plan.basePrice, selectedPeriod);
-            
+            const currentDiscount =
+              periods.find(p => p.key === selectedPeriod)?.discount || 0;
+            const currentPrice = calculatePrice(
+              plan.basePrice,
+              currentDiscount,
+              selectedPeriod
+            );
+            const originalTotalPrice = getOriginalTotalPrice(
+              plan.basePrice,
+              selectedPeriod
+            );
+
             return (
-              <Card 
+              <Card
                 key={index}
-                className={`relative p-8 hover:shadow-cta transition-all duration-300 hover:-translate-y-2 ${plan.color} ${plan.badge === "Mais Popular" ? "scale-105" : ""}`}
+                className={`relative p-8 hover:shadow-cta transition-all duration-300 hover:-translate-y-2 ${
+                  plan.color
+                } ${plan.badge === 'Mais Popular' ? 'scale-105' : ''}`}
               >
-                {/* Badge */}
                 {plan.badge && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge 
+                    <Badge
                       className={`px-4 py-1 font-semibold ${
-                        plan.badge === "Mais Popular" 
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-zaplia-orange text-white"
+                        plan.badge === 'Mais Popular'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-zaplia-orange text-white'
                       }`}
                     >
                       {plan.badge}
                     </Badge>
                   </div>
                 )}
-                
-                {/* Plan Header */}
+
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-foreground mb-4">
                     {plan.name}
@@ -230,13 +248,16 @@ export const PricingSection = () => {
                         {formatPrice(currentPrice)}
                       </span>
                       <span className="text-muted-foreground ml-1">
-                        {selectedPeriod === 'monthly' ? '/mês' : selectedPeriod === 'semi' ? ' por 6 meses' : ' por 1 ano'}
+                        {selectedPeriod === 'monthly'
+                          ? '/mês'
+                          : selectedPeriod === 'semi'
+                          ? ' por 6 meses'
+                          : ' por 1 ano'}
                       </span>
                     </div>
                   </div>
                 </div>
-              
-                {/* Features */}
+
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, featureIndex) => {
                     const IconComponent = getFeatureIcon(feature);
@@ -248,13 +269,12 @@ export const PricingSection = () => {
                     );
                   })}
                 </ul>
-                
-                {/* CTA Button */}
-                <Button 
-                  variant={plan.badge === "Mais Popular" ? "cta" : "outline"} 
+
+                <Button
+                  variant={plan.badge === 'Mais Popular' ? 'cta' : 'outline'}
                   className="w-full"
                   size="lg"
-                  onClick={() => window.open("https://app.zaplia.com.br/signup", "_blank")}
+                  onClick={() => window.open('/signup', '_blank')}
                 >
                   Assinar Agora
                 </Button>
@@ -262,15 +282,20 @@ export const PricingSection = () => {
             );
           })}
         </div>
-        
+
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
             Precisa de um plano personalizado para sua empresa?
           </p>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
-            onClick={() => openWhatsApp(ZAPLIA_WHATSAPP, "Gostaria de um plano personalizado para minha empresa!")}
+            onClick={() =>
+              openWhatsApp(
+                ZAPLIA_WHATSAPP,
+                'Gostaria de um plano personalizado para minha empresa!'
+              )
+            }
           >
             Falar com Especialista
           </Button>
