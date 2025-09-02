@@ -60,13 +60,15 @@ export const HeaderSection = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button
               className="bg-zaplia-green hover:bg-zaplia-green/90"
-              onClick={() => window.open('/signup', '_blank')}
+              onClick={() => window.open('/trial-teste-gratis', '_blank')}
             >
               Teste Grátis
             </Button>
             <Button
               variant="outline"
-              onClick={() => window.open('/login', '_blank')}
+              onClick={() =>
+                window.open('https://app.zaplia.com.br/login', '_blank')
+              }
             >
               Entrar
             </Button>
@@ -110,7 +112,7 @@ export const HeaderSection = () => {
               <div className="pt-4 space-y-3">
                 <Button
                   className="w-full bg-zaplia-green hover:bg-zaplia-green/90"
-                  onClick={() => window.open('/signup', '_blank')}
+                  onClick={() => window.open('/trial-teste-gratis', '_blank')}
                 >
                   Teste Grátis
                 </Button>

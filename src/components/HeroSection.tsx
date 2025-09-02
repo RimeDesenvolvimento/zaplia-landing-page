@@ -31,7 +31,7 @@ export const HeroSection = () => {
                 variant="hero"
                 size="xl"
                 className="group"
-                onClick={() => window.open('/signup', '_blank')}
+                onClick={() => window.open('/trial-teste-gratis', '_blank')}
               >
                 Teste Grátis Agora
                 <svg

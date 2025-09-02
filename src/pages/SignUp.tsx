@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import apiClient from '@/services/api';
 
 const formSchema = z
   .object({
@@ -36,6 +37,27 @@ type FormData = z.infer<typeof formSchema>;
 
 const RegisterPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17522613958';
+    script.async = true;
+    document.head.appendChild(script);
+
+    const inlineScript = document.createElement('script');
+    inlineScript.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17522613958');
+      `;
+    document.head.appendChild(inlineScript);
+
+    return () => {
+      document.head.removeChild(script);
+      document.head.removeChild(inlineScript);
+    };
+  }, []);
 
   const {
     register,
@@ -81,17 +103,26 @@ const RegisterPage: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<FormData> = async data => {
-    setIsSubmitting(true);
-    console.log('Form data:', data);
+    try {
+      setIsSubmitting(true);
+      console.log('Form data:', data);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+      const dataToBd = {
+        name: data.companyName,
+        email: data.email,
+        phone: data.phone?.replace(/\D/g, '') || '',
+        cpfCnpj: data.cpfCnpj.replace(/\D/g, ''),
+        password: data.password,
+      };
 
-    setIsSubmitting(false);
-    window.location.href = '/thank-you';
-  };
+      await apiClient.post('/companies/cadastro', dataToBd);
 
-  const handleLoginClick = () => {
-    alert('Funcionalidade de login será implementada em breve!');
+      window.location.href = '/trial-obrigado';
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -174,7 +205,7 @@ const RegisterPage: React.FC = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              CPF / CNPJ
+              CPF / CNPJ <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -245,7 +276,9 @@ const RegisterPage: React.FC = () => {
         <div className="text-center mt-6">
           <span className="text-gray-600">Já possui uma conta? </span>
           <button
-            onClick={handleLoginClick}
+            onClick={() =>
+              window.open('https://app.zaplia.com.br/login', '_blank')
+            }
             className="text-green-600 font-semibold hover:text-green-700 hover:underline transition-colors duration-200"
           >
             Fazer login

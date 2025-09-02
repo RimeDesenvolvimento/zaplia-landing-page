@@ -1,7 +1,30 @@
+import { useEffect } from 'react';
+
 const ThankYouPage: React.FC = () => {
   const handleGoHome = () => {
     window.location.href = '/';
   };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17522613958';
+    script.async = true;
+    document.head.appendChild(script);
+
+    const inlineScript = document.createElement('script');
+    inlineScript.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17522613958');
+      `;
+    document.head.appendChild(inlineScript);
+
+    return () => {
+      document.head.removeChild(script);
+      document.head.removeChild(inlineScript);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br  from-green-300 via-white to-green-300 flex items-center justify-center p-5">
