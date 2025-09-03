@@ -254,7 +254,7 @@ export const PricingSection = () => {
                   variant={plan.badge === "Mais Popular" ? "cta" : "outline"} 
                   className="w-full"
                   size="lg"
-                  onClick={() => window.open("https://app.zaplia.com.br/signup", "_blank")}
+                  onClick={() => window.open("/trial-teste-gratis", "_blank")}
                 >
                   Assinar Agora
                 </Button>
