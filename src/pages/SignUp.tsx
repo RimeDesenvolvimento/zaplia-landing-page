@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import apiClient from '@/services/api';
+import qs from 'query-string';
 
 const formSchema = z
   .object({
@@ -37,6 +38,10 @@ type FormData = z.infer<typeof formSchema>;
 
 const RegisterPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const params = qs.parse(window.location.search);
+
+  const partnerToken = params.token;
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -105,7 +110,6 @@ const RegisterPage: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = async data => {
     try {
       setIsSubmitting(true);
-      console.log('Form data:', data);
 
       const dataToBd = {
         name: data.companyName,
@@ -114,6 +118,10 @@ const RegisterPage: React.FC = () => {
         cpfCnpj: data.cpfCnpj.replace(/\D/g, ''),
         password: data.password,
       };
+
+      if (partnerToken) {
+        Object.assign(dataToBd, { partnerToken });
+      }
 
       await apiClient.post('/companies/cadastro', dataToBd);
 
