@@ -25,8 +25,8 @@ export const PricingSection = () => {
 
   const periods = [
     { key: 'monthly', label: 'Mensal', discount: 0 },
-    { key: 'semi', label: 'Semestral', discount: 20 },
-    { key: 'annual', label: 'Anual', discount: 30 },
+    // { key: 'semi', label: 'Semestral', discount: 20 },
+    // { key: 'annual', label: 'Anual', discount: 30 },
   ];
 
   const calculatePrice = (
@@ -84,7 +84,7 @@ export const PricingSection = () => {
   const plans = [
     {
       name: 'Básico',
-      basePrice: 49.9,
+      basePrice: 69.9,
       badge: null,
       color: 'border-muted',
       features: [
@@ -169,7 +169,7 @@ export const PricingSection = () => {
             quando quiser.
           </p>
 
-          <div className="inline-flex bg-background rounded-xl p-1 shadow-lg">
+          {/* <div className="inline-flex bg-background rounded-xl p-1 shadow-lg">
             {periods.map(period => (
               <button
                 key={period.key}
@@ -190,7 +190,7 @@ export const PricingSection = () => {
                 )}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
