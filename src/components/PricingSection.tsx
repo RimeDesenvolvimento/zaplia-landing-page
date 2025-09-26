@@ -116,6 +116,7 @@ export const PricingSection = () => {
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
         'Painel Administrativo',
+        'Integrações Nativas',
         'API de Integração',
         'Acesso Mobile',
         'Ativação imediata',
@@ -135,6 +136,7 @@ export const PricingSection = () => {
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
         'Painel Administrativo',
+        'Integrações Nativas',
         'API de Integração',
         'Acesso Mobile',
         'Ativação imediata',
@@ -154,10 +156,11 @@ export const PricingSection = () => {
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
         'Painel Administrativo',
+        'Integrações Nativas',
         'API de Integração',
         'Integração com ChatGPT',
         'Acesso Mobile',
-        'Atendimento Prioritário',
+
         'Ativação imediata',
         'Suporte Premium',
       ],
@@ -321,10 +324,19 @@ export const PricingSection = () => {
                 </Badge>
               </div>
 
-              <h3 className="text-2xl font-bold text-foreground mb-3">
-                Treinamento Personalizado
-              </h3>
-
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  Treinamento Personalizado
+                </h3>
+                <div className="flex items-baseline justify-center mb-4">
+                  <span className="text-2xl font-bold text-zaplia-orange">
+                    R$ 300,00
+                  </span>
+                  <span className="text-muted-foreground ml-1 text-sm">
+                    /única vez
+                  </span>
+                </div>
+              </div>
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Clock className="w-5 h-5 text-muted-foreground" />
                 <span className="text-muted-foreground font-medium">
