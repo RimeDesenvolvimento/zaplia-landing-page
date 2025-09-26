@@ -14,6 +14,9 @@ import {
   Phone,
   Headphones,
   Zap,
+  BookOpen,
+  Clock,
+  Video,
 } from 'lucide-react';
 import { openWhatsApp, ZAPLIA_WHATSAPP } from '@/utils/whatsapp';
 import { useState } from 'react';
@@ -84,48 +87,50 @@ export const PricingSection = () => {
   const plans = [
     {
       name: 'Básico',
-      basePrice: 69.9,
+      basePrice: 99.9,
       badge: null,
       color: 'border-muted',
       features: [
         '01 números de WhatsApp',
         '01 Atendente',
+        '02 Filas / Setores',
+        'Bot de Atendimento',
+        'Mensagens ilimitadas',
+        'Agendamentos de Envio',
+        'Painel Administrativo',
+        'Acesso Mobile',
+        'Ativação imediata',
+        'Suporte Premium',
+      ],
+    },
+    {
+      name: 'Pro',
+      basePrice: 199.9,
+      badge: 'Mais Popular',
+      color: 'border-primary shadow-cta',
+      features: [
+        '02 números de WhatsApp',
+        '03 Atendentes',
         '03 Filas / Setores',
         'Bot de Atendimento',
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
         'Painel Administrativo',
-        'Acesso Mobile',
-        'Ativação imediata',
-      ],
-    },
-    {
-      name: 'Pro',
-      basePrice: 99.9,
-      badge: 'Mais Popular',
-      color: 'border-primary shadow-cta',
-      features: [
-        '02 números de WhatsApp',
-        '05 Atendentes',
-        '05 Filas / Setores',
-        'Bot de Atendimento',
-        'Mensagens ilimitadas',
-        'Agendamentos de Envio',
-        'Painel Administrativo',
         'API de Integração',
         'Acesso Mobile',
         'Ativação imediata',
+        'Suporte Premium',
       ],
     },
     {
       name: 'Enterprise',
-      basePrice: 199.0,
+      basePrice: 299.0,
       badge: null,
       color: 'border-muted',
       features: [
-        '05 números de WhatsApp',
-        '10 Atendentes',
-        '10 Filas / Setores',
+        '3 números de WhatsApp',
+        '5 Atendentes',
+        '5 Filas / Setores',
         'Bot de Atendimento',
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
@@ -133,6 +138,7 @@ export const PricingSection = () => {
         'API de Integração',
         'Acesso Mobile',
         'Ativação imediata',
+        'Suporte Premium',
       ],
     },
     {
@@ -141,9 +147,9 @@ export const PricingSection = () => {
       badge: 'Para grandes equipes',
       color: 'border-zaplia-orange shadow-feature',
       features: [
-        '10 números de WhatsApp',
-        '25 Atendentes',
-        '20 Filas / Setores',
+        '5 números de WhatsApp',
+        '10 Atendentes',
+        '10 Filas / Setores',
         'Bot de Atendimento',
         'Mensagens ilimitadas',
         'Agendamentos de Envio',
@@ -153,8 +159,18 @@ export const PricingSection = () => {
         'Acesso Mobile',
         'Atendimento Prioritário',
         'Ativação imediata',
+        'Suporte Premium',
       ],
     },
+  ];
+
+  const trainingFeatures = [
+    'Configuração completa da plataforma',
+    'Criação de bots personalizados',
+    'Treinamento da equipe',
+    'Integração com seus sistemas',
+    'Suporte técnico especializado',
+    'Estratégias de atendimento',
   ];
 
   return (
@@ -168,29 +184,6 @@ export const PricingSection = () => {
             Escolha o plano ideal para sua empresa. Sem fidelização, cancele
             quando quiser.
           </p>
-
-          {/* <div className="inline-flex bg-background rounded-xl p-1 shadow-lg">
-            {periods.map(period => (
-              <button
-                key={period.key}
-                onClick={() =>
-                  setSelectedPeriod(period.key as 'monthly' | 'semi' | 'annual')
-                }
-                className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 relative ${
-                  selectedPeriod === period.key
-                    ? 'bg-primary text-primary-foreground shadow-md'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {period.label}
-                {period.discount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 bg-zaplia-green text-white text-xs px-2 py-1">
-                    -{period.discount}%
-                  </Badge>
-                )}
-              </button>
-            ))}
-          </div> */}
         </div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
@@ -283,22 +276,83 @@ export const PricingSection = () => {
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
-            Precisa de um plano personalizado para sua empresa?
-          </p>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() =>
-              openWhatsApp(
-                ZAPLIA_WHATSAPP,
-                'Gostaria de um plano personalizado para minha empresa!'
-              )
-            }
-          >
-            Falar com Especialista
-          </Button>
+        <div className="mt-16 grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <Card className="p-6 border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-background hover:shadow-lg transition-all duration-300">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Users className="w-8 h-8 text-primary" />
+                <Badge className="bg-primary text-primary-foreground font-semibold text-sm px-3 py-1">
+                  PLANO PERSONALIZADO
+                </Badge>
+              </div>
+
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                Solução Empresarial
+              </h3>
+
+              <p className="text-muted-foreground mb-6">
+                Precisa de um plano personalizado para sua empresa? Criamos uma
+                solução sob medida para suas necessidades específicas.
+              </p>
+
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                onClick={() =>
+                  openWhatsApp(
+                    ZAPLIA_WHATSAPP,
+                    'Gostaria de um plano personalizado para minha empresa!'
+                  )
+                }
+              >
+                <MessageSquare className="w-5 h-5 mr-2" />
+                Falar com Especialista
+              </Button>
+            </div>
+          </Card>
+
+          <Card className="p-6 border-2 border-zaplia-orange/20 bg-gradient-to-r from-zaplia-orange/5 to-background hover:shadow-lg transition-all duration-300">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <BookOpen className="w-8 h-8 text-zaplia-orange" />
+                <Badge className="bg-zaplia-orange text-white font-semibold text-sm px-3 py-1">
+                  TREINAMENTO OPCIONAL
+                </Badge>
+              </div>
+
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                Treinamento Personalizado
+              </h3>
+
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Clock className="w-5 h-5 text-muted-foreground" />
+                <span className="text-muted-foreground font-medium">
+                  Duração máxima de 2 horas
+                </span>
+              </div>
+
+              <p className="text-muted-foreground mb-6">
+                Maximize o potencial da plataforma com nosso treinamento
+                especializado e configure tudo do jeito certo desde o início.
+              </p>
+
+              <Button
+                variant="default"
+                size="lg"
+                className="w-full bg-zaplia-orange hover:bg-zaplia-orange/90 text-white shadow-lg"
+                onClick={() =>
+                  openWhatsApp(
+                    ZAPLIA_WHATSAPP,
+                    'Gostaria de contratar o treinamento personalizado para minha equipe!'
+                  )
+                }
+              >
+                <Video className="w-5 h-5 mr-2" />
+                Contratar Treinamento
+              </Button>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
