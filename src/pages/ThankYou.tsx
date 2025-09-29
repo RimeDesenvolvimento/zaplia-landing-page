@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const ThankYouPage: React.FC = () => {
   const handleGoHome = () => {
-    window.location.href = '/';
+    window.location.href = 'https://app.zaplia.com.br/login';
   };
 
   useEffect(() => {
