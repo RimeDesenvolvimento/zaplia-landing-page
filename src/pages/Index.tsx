@@ -10,27 +10,6 @@ import { FAQSection } from '@/components/FAQSection';
 import { FooterSection } from '@/components/FooterSection';
 
 const Index = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17522613958';
-    script.async = true;
-    document.head.appendChild(script);
-
-    const inlineScript = document.createElement('script');
-    inlineScript.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17522613958');
-    `;
-    document.head.appendChild(inlineScript);
-
-    return () => {
-      document.head.removeChild(script);
-      document.head.removeChild(inlineScript);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen">
       <HeaderSection />
